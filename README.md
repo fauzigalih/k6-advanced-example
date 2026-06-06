@@ -70,16 +70,16 @@ npm install
 ### Running K6 Test
 
 ```bash
-k6 run tests/stages.js
+k6 run tests/data-fixture-shared-array.js
 ```
 ```bash
-k6 run tests/checks.js
+k6 run tests/data-driven.js
 ```
 ```bash
-k6 run tests/thresholds.js
+k6 run tests/custom-metrics.js
 ```
 ```bash
-k6 run tests/schenarios.js
+k6 run tests/realistic-user-flow.js
 ```
 ---
 
@@ -94,10 +94,8 @@ results/
 Contoh file hasil:
 
 ```text
-results/stages.json
-results/checks.json
-results/thresholds.json
-results/scenarios.json
+results/summary.json
+results/summary.html
 ```
 
 ---
