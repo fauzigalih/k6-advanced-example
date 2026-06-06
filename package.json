@@ -1,0 +1,23 @@
+{
+  "name": "k6-advanced-example",
+  "version": "1.0.0",
+  "description": "Project ini digunakan untuk melakukan performance testing API menggunakan Grafana K6.",
+  "homepage": "https://github.com/fauzigalih/k6-advanced-example#readme",
+  "bugs": {
+    "url": "https://github.com/fauzigalih/k6-advanced-example/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fauzigalih/k6-advanced-example.git"
+  },
+  "license": "ISC",
+  "author": "Fauzi Galih",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/k6": "^2.0.0"
+  }
+}
