@@ -1,0 +1,102 @@
+[
+  {
+    "userId": 1,
+    "name": "Fauzi Galih",
+    "email": "fauzi.galih@example.com"
+  },
+  {
+    "userId": 2,
+    "name": "Budi Santoso",
+    "email": "budi.santoso@example.com"
+  },
+  {
+    "userId": 3,
+    "name": "Citra Dewi",
+    "email": "citra.dewi@example.com"
+  },
+  {
+    "userId": 4,
+    "name": "Deni Pratama",
+    "email": "deni.pratama@example.com"
+  },
+  {
+    "userId": 5,
+    "name": "Eka Putri",
+    "email": "eka.putri@example.com"
+  },
+  {
+    "userId": 6,
+    "name": "Fajar Nugroho",
+    "email": "fajar.nugroho@example.com"
+  },
+  {
+    "userId": 7,
+    "name": "Gina Maharani",
+    "email": "gina.maharani@example.com"
+  },
+  {
+    "userId": 8,
+    "name": "Hendra Wijaya",
+    "email": "hendra.wijaya@example.com"
+  },
+  {
+    "userId": 9,
+    "name": "Indah Permata",
+    "email": "indah.permata@example.com"
+  },
+  {
+    "userId": 10,
+    "name": "Joko Susilo",
+    "email": "joko.susilo@example.com"
+  },
+  {
+    "userId": 11,
+    "name": "Kiki Amelia",
+    "email": "kiki.amelia@example.com"
+  },
+  {
+    "userId": 12,
+    "name": "Lukman Hakim",
+    "email": "lukman.hakim@example.com"
+  },
+  {
+    "userId": 13,
+    "name": "Maya Sari",
+    "email": "maya.sari@example.com"
+  },
+  {
+    "userId": 14,
+    "name": "Nanda Prakoso",
+    "email": "nanda.prakoso@example.com"
+  },
+  {
+    "userId": 15,
+    "name": "Olivia Putri",
+    "email": "olivia.putri@example.com"
+  },
+  {
+    "userId": 16,
+    "name": "Putra Mahendra",
+    "email": "putra.mahendra@example.com"
+  },
+  {
+    "userId": 17,
+    "name": "Qori Rahma",
+    "email": "qori.rahma@example.com"
+  },
+  {
+    "userId": 18,
+    "name": "Rizky Firmansyah",
+    "email": "rizky.firmansyah@example.com"
+  },
+  {
+    "userId": 19,
+    "name": "Siti Nurhaliza",
+    "email": "siti.nurhaliza@example.com"
+  },
+  {
+    "userId": 20,
+    "name": "Taufik Hidayat",
+    "email": "taufik.hidayat@example.com"
+  }
+]

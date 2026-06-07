@@ -70,13 +70,13 @@ npm install
 ### Running K6 Test
 
 ```bash
-k6 run tests/data-fixture-shared-array.js
+k6 run tests/shared-array.js
 ```
 ```bash
 k6 run tests/data-driven.js
 ```
 ```bash
-k6 run tests/custom-metrics.js
+k6 run tests/metrics.js
 ```
 ```bash
 k6 run tests/realistic-user-flow.js
