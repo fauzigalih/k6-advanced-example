@@ -23,7 +23,7 @@ const postsCsv = new SharedArray('posts', function () {
 
 export const options = {
   thresholds: {
-    http_req_duration: ['p(95)<2000'],
+    http_req_duration: ['p(95)<1'],
     http_req_failed: ['rate<0.01'],
     checks: ['rate>0.95'],
   },
