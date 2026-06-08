@@ -14,9 +14,9 @@ const postsCsv = new SharedArray('posts', function () {
     const values = line.split(',');
 
     return {
-      [headers[0]]: values[0],
-      [headers[1]]: values[1],
-      [headers[2]]: Number(values[2]),
+      [headers[0]]: values[0].trim(),
+      [headers[1]]: values[1].trim(),
+      [headers[2]]: Number(values[2].trim()),
     };
   });
 });
@@ -24,6 +24,8 @@ const postsCsv = new SharedArray('posts', function () {
 export const options = {
   thresholds: {
     http_req_duration: ['p(95)<2000'],
+    http_req_failed: ['rate<0.01'],
+    checks: ['rate>0.95'],
   },
   scenarios: {
     user_journey: {
@@ -80,9 +82,20 @@ export function handleSummary(data) {
 
     const p95Duration = data.metrics.http_req_duration?.values?.['p(95)'] ?? 0;
 
-    const thresholdsPassed = Object.values(data.metrics)
-      .flatMap(metric => Object.values(metric.thresholds || {}))
-      .every(threshold => threshold.ok);
+    const thresholds = Object.entries(data.metrics)
+      .filter(([_, metric]) => metric.thresholds)
+      .map(([metricName, metric]) => ({
+        name: metricName,
+        passed: Object.values(metric.thresholds)
+          .every(threshold => threshold.ok),
+      }));
+
+    const thresholdRows = thresholds.map(t => `
+          <tr>
+            <td>${t.name}</td>
+            <td>${t.passed ? 'PASS' : 'FAIL'}</td>
+          </tr>
+        `).join('');
 
     const html = `
 <!DOCTYPE html>
@@ -103,10 +116,7 @@ export function handleSummary(data) {
             <td>Total Requests</td>
             <td>${totalRequests}</td>
         </tr>
-        <tr>
-            <td>Threshold Status</td>
-            <td>${thresholdsPassed ? 'PASS' : 'FAIL'}</td>
-        </tr>
+        ${thresholdRows}
         <tr>
             <td>P95 Duration</td>
             <td>${p95Duration.toFixed(2)} ms</td>
