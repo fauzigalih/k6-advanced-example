@@ -30,12 +30,23 @@ pipeline {
 
     stage('Performance Test') {
       steps {
+        sh 'mkdir -p results && chmod 777 results'
         sh """
           docker run --rm \
             -v ${env.WORKSPACE}:/app \
+            -e BUILD_NUMBER=${env.BUILD_NUMBER} \
+            -e JOB_NAME=${env.JOB_NAME} \
             ${K6_IMAGE} \
             run --vus ${K6_VUS} /app/${K6_FILE}
         """
+      }
+    }
+
+    stage('Archive Results') {
+      steps {
+        sh 'test -f results/summary.json || exit 1'
+        sh 'test -f results/summary.html || exit 1'
+        echo "📊 Results generated — Build #${env.BUILD_NUMBER}"
       }
     }
 
