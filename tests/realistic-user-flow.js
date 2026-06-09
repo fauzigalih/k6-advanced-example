@@ -110,73 +110,16 @@ export function handleSummary(data) {
 <head>
   <meta charset="utf-8">
   <title>K6 Test Report — Build #${__ENV.BUILD_NUMBER || 'local'}</title>
-  <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-    color: #333;
-  }
-
-  h1 {
-    color: #222;
-    margin-bottom: 10px;
-  }
-
-  .meta {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    border: 2px solid #444;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  th {
-    background: #f0f0f0;
-    font-weight: bold;
-    border: 1px solid #444;
-    padding: 12px;
-  }
-
-  td {
-    border: 1px solid #666;
-    padding: 12px;
-  }
-
-  tr:nth-child(even) {
-    background: #fafafa;
-  }
-
-  tr:hover {
-    background: #f5f7fa;
-  }
-
-  .pass {
-    color: #198754;
-    font-weight: bold;
-  }
-
-  .fail {
-    color: #dc3545;
-    font-weight: bold;
-  }
-</style>
 </head>
 <body>
   <h1>K6 Performance Test Report</h1>
-  <p class="meta">
+  <p>
     Build: #${__ENV.BUILD_NUMBER || 'local'} |
     Job: ${__ENV.JOB_NAME || 'local'} |
     Generated: ${formattedTime}
   </p>
 
-  <table>
+  <table border="1" cellpadding="8" cellspacing="0">
     <tr><th>Metric</th><th>Value</th></tr>
     <tr>
       <td>Total Requests</td>
