@@ -36,6 +36,7 @@ pipeline {
             -v ${env.WORKSPACE}:/app \
             -e BUILD_NUMBER=${env.BUILD_NUMBER} \
             -e JOB_NAME=${env.JOB_NAME} \
+            --user \$(id -u):\$(id -g) \
             ${K6_IMAGE} \
             run --vus ${K6_VUS} /app/${K6_FILE}
         """
@@ -43,6 +44,9 @@ pipeline {
     }
 
     stage('Archive Results') {
+      when {
+        expression { fileExists('results/summary.json') }
+      }
       steps {
         sh 'test -f results/summary.json || exit 1'
         sh 'test -f results/summary.html || exit 1'
