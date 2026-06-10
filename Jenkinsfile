@@ -5,6 +5,9 @@ pipeline {
     K6_FILE    = "${params.TEST_FILE ?: 'tests/realistic-user-flow.js'}"
     K6_IMAGE   = "grafana/k6:latest"
     K6_VUS     = "${params.VUS ?: '1'}"
+    INFLUXDB_URL  = "http://localhost:8086"
+    INFLUXDB_ORG  = "sdet-workflow"
+    INFLUXDB_BUCKET = "k6"
   }
 
   parameters {
@@ -30,16 +33,24 @@ pipeline {
 
     stage('Performance Test') {
       steps {
-        sh 'mkdir -p results && chmod 777 results'
-        sh """
-          docker run --rm \
-            -v ${env.WORKSPACE}:/app \
-            -e BUILD_NUMBER=${env.BUILD_NUMBER} \
-            -e JOB_NAME=${env.JOB_NAME} \
-            --user \$(id -u):\$(id -g) \
-            ${K6_IMAGE} \
-            run --vus ${K6_VUS} /app/${K6_FILE}
-        """
+        withCredentials([string(credentialsId: 'influxdb-token', variable: 'INFLUXDB_TOKEN')]) {
+          sh 'mkdir -p results && chmod 777 results'
+          sh """
+            docker run --rm \
+              -v ${env.WORKSPACE}:/app \
+              -e BUILD_NUMBER=${env.BUILD_NUMBER} \
+              -e JOB_NAME=${env.JOB_NAME} \
+              -e K6_INFLUXDB_ORGANIZATION=${INFLUXDB_ORG} \
+              -e K6_INFLUXDB_BUCKET=${INFLUXDB_BUCKET} \
+              -e K6_INFLUXDB_TOKEN=${INFLUXDB_TOKEN} \
+              --user \$(id -u):\$(id -g) \
+              --network host \
+              ${K6_IMAGE} \
+              run --vus ${K6_VUS} \
+                  --out influxdb=${INFLUXDB_URL} \
+                  /app/${K6_FILE}
+          """
+        }
       }
     }
 
