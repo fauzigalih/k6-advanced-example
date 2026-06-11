@@ -74,6 +74,7 @@ pipeline {
                 --network host \
                 ${K6_IMAGE} \
                 run --vus ${K6_VUS} \
+                    --tag testid=build-${env.BUILD_NUMBER} \
                     ${influxdbOut} \
                     /app/${K6_FILE}
             """
